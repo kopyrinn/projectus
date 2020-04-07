@@ -26,6 +26,10 @@ Route::post('/axio','AffairController@getDick');
 Route::post('/affair','AffairController@test'); 
 
 Route::post('/dobav','AffairController@test'); 
+Route::post('/delete/{id}','AffairController@destroy'); 
+Route::post('/update','AffairController@update'); 
+
+
 
 Route::get('/get','AffairController@affairshow'); 
 Route::get('/au','AffairController@auth'); 

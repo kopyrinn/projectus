@@ -33,7 +33,7 @@ class AffairController extends Controller
     public function getDick(Request $request) {  
     	$name = $request->name;
 
-    	return "nONO, " . $name;
+    	return "Контролер работает мистер " . $name;
     }
 
     public function test(Request $request) {  
@@ -42,9 +42,13 @@ class AffairController extends Controller
 			"name" => $request->name,
 			"status" => $request->status,
 		]); 	 
-		return back(); 
+		//return back(); 
     }
 
+    public function destroy(Request $request) {
+        $aff = Affair::find($request->id)->delete();
+        //return back();    
+    }  
 
 
 
@@ -64,15 +68,11 @@ class AffairController extends Controller
 		$affair = Affair::find($request->id);
 		$affair->status = $request->choose;
 		$affair->save();
-		return back();    
+		//return back();    
 
     }
 			
 
-    public function destroy(Request $request) {
-    	Affair::destroy($request->delete);
-		return back();	
-    }  
 
   //    public function store(Request $request) {
 		// Affair::create($request->all());

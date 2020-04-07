@@ -1968,6 +1968,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1984,10 +2018,7 @@ __webpack_require__.r(__webpack_exports__);
       testest: '',
       hasError: true,
       auth: '',
-      awesome: true,
-      "delete": {
-        'id': 2
-      }
+      awesome: true
     };
   },
   mounted: function mounted() {
@@ -37445,8 +37476,176 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {}
-var staticRenderFns = []
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-12" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.newItem.name,
+                  expression: "newItem.name"
+                }
+              ],
+              staticClass: "form-control col-12",
+              attrs: {
+                type: "",
+                name: "",
+                required: "",
+                name: "name",
+                placeholder: "дело"
+              },
+              domProps: { value: _vm.newItem.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.newItem, "name", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.newItem.user_id,
+                  expression: "newItem.user_id"
+                }
+              ],
+              staticClass: "form-control col-3",
+              attrs: {
+                type: "",
+                name: "",
+                hidden: "",
+                required: "",
+                name: "user_id",
+                placeholder: "user_id"
+              },
+              domProps: { value: _vm.newItem.user_id },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.newItem, "user_id", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.newItem.status,
+                  expression: "newItem.status"
+                }
+              ],
+              staticClass: "form-control col-3",
+              attrs: {
+                type: "",
+                name: "",
+                required: "",
+                hidden: "",
+                name: "status",
+                placeholder: "status"
+              },
+              domProps: { value: _vm.newItem.status },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.newItem, "status", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { type: "submit" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.createItem()
+                  }
+                }
+              },
+              [_vm._v("Добавить дело")]
+            ),
+            _vm._v(" "),
+            _c(
+              "p",
+              {
+                staticClass: "alert alert-danger",
+                class: { hidden: _vm.hasError }
+              },
+              [
+                _vm._v(
+                  "\n                            Заполни все поля\n                        "
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-header" }, [_vm._v("Все дела")]),
+          _vm._v(" "),
+          _c(
+            "table",
+            { staticClass: "table table-borderless", attrs: { id: "table" } },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._l(_vm.items, function(item) {
+                return item.user_id == _vm.authID
+                  ? _c("tr", [
+                      _c("th", [_vm._v(_vm._s(item.id))]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v(_vm._s(item.name))]),
+                      _vm._v(" "),
+                      item.status === 0
+                        ? _c("th", [_vm._v("невыполнено")])
+                        : _c("th", [_vm._v("выполнено")])
+                    ])
+                  : _c("tr")
+              })
+            ],
+            2
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("НОМЕР")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("МОИ ДЕЛА")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("СТАТУС ДЕЛА")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
 
 
 
@@ -52603,14 +52802,13 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.component('articles', __webpack_require__(/*! ./components/Articles.vue */ "./resources/js/components/Articles.vue")["default"]);
 Vue.component('app', __webpack_require__(/*! ./components/App.vue */ "./resources/js/components/App.vue")["default"]);
 axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/axio', {
-  name: 'NE KOLYA'
+  name: 'master'
 }).then(function (respond) {
   //alert(respond.data);
   console.log(respond.data); //document.getElementById('axios').innerHTML = respond.data;
   // console.log(user);
 });
 
-console.log('app js worked');
 var app = new Vue({
   el: '#app',
   data: {
@@ -52620,16 +52818,43 @@ var app = new Vue({
       'user_id': userID.value,
       'status': 0
     },
-    hasError: true,
     items: [],
     affairs: [],
-    authUser: 'баракуда'
+    upd: 1,
+    counter: 0
   },
   methods: {
-    login: function login() {
-      var authID = document.getElementById('userID').value;
-      this.userID = authID;
-      console.log(this.userID);
+    delItem: function delItem(delID) {
+      var destr = delID.id;
+      console.log(destr);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/delete/' + delID.id).then(function (responce) {});
+      this.getItems();
+    },
+    update: function update(upda) {
+      var updID = upda.id;
+      var choose = this.upd; // console.log(choose)
+      // console.log(updID)
+
+      var obnovl = {
+        'id': upda.id,
+        'choose': choose
+      };
+      console.log(obnovl);
+
+      if (this.upd == 1) {
+        this.upd = 0; //alert(this.upd);
+
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/update', obnovl).then(function (responce) {});
+        this.getItems();
+      } else {
+        this.upd = 1; //alert(this.upd); 
+
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/update', obnovl).then(function (responce) {});
+        this.getItems();
+      } //     axios.post('/api/update', obnovl).then( function(responce){ 
+      //         }) 
+      // this.getItems();  
+
     },
     getAuth: function getAuth() {
       var _this = this;
@@ -52640,51 +52865,43 @@ var app = new Vue({
       });
     },
     getItems: function getItems() {
-      console.log('а как же эта');
+      console.log('getItems отработал');
 
       var _this = this; //axios.post('api/get');
 
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/get').then(function (responce) {
         _this.items = responce.data; //console.log(responce.data);				
-      });
+      }); //
     },
     createItem: function createItem() {
       var input = this.newItem;
+      console.log(input); //проверка
 
-      var _this = this;
-
-      console.log(input);
-
-      if (input['name'] == '' || input['user_id'] == '') {
-        alert('заполни поле');
-        this.hasError = false;
-      } else {
-        this.hasError = true;
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/dobav', input).then(function (responce) {
-          _this.newItem = {
-            'name': '',
-            'user_id': '',
-            'status': ''
-          };
-
-          _this.getItems();
-        });
-      }
-
-      this.getItems();
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/dobav', input).then(function (responce) {//then 9обработать promise метода post
+        //newItem = {'name': '', 'user_id' : '', 'status' : ''};   
+      });
+      this.getItems(); // this.newItem.name = '';
+    },
+    login: function login() {
+      var authID = document.getElementById('userID').value;
+      this.userID = authID;
+      console.log(this.userID + " это айди юзера");
     }
   },
   mounted: function mounted() {
-    console.log('я врубил новый mounted '); //this.getItems();
+    console.log('app js подключен'); //this.getItems();
 
     this.login();
+    this.getItems();
   }
 }); // axios.post('/api/dobav', {name:input['name']} ).then(respond => {
 //              //alert(respond.data);
 //              console.log(respond.data);
 //              // document.getElementById('axios').innerHTML = respond.data;
 //        		 });
+// var formDel = document.getElementById('del').value;
+//  this.del = formDel;
 
 /***/ }),
 

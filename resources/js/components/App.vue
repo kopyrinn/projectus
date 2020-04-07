@@ -35,15 +35,49 @@
                                 <th>{{item.name}}</th>
                                 <th v-if="item.status===0">невыполнено</th>
                                 <th v-else="item.status===1">выполнено</th>
-                                <input type="" required name="" placeholder="" v-model="delete.id">
-                                <button>удалить</button>
+                               
                             </tr>
                             <tr v-else>
                                 
                             </tr>
                         </table>
 
+ <!--
+                        <h2>Добавить дело НА PHP</h2>
+                        <input name="name" placeholder="дело">
+                        <input type="" name="status" hidden value="0">
+                        <input type="" name="userID" hidden>
+                        <button>отправить</button> это из обычного php
 
+                        @foreach($affair as $aff)
+        @if ( $aff->user->name  == Auth::user()->name)
+            <h3 style="color: green">{{ $aff->name }} 
+                @if ($aff->status == 1)
+                    <span style="color: red">выполнено</span>
+                @else 
+                    <span style="color: red">невыполнено</span>
+                @endif
+            </h3>
+        <div class="d-flex">
+            
+                <form action="/update" method="POST">
+                    @csrf
+                    <input type="" name="id" value="{{ $aff->id }}" hidden>
+                    <select name="choose">
+                        <option value="1">выполнено</option>,
+                        <option value="0">невыполнено</option>
+                    </select>
+                    <button>изменить</button>
+                </form>
+                <form action="/delete" method="POST">
+                    @csrf
+                    <input hidden name="delete" value="{{ $aff->id }}">
+                    <button>Удалить</button>
+                </form>
+            
+        </div>
+        @endif
+@endforeach -->
 
 
           
@@ -70,7 +104,7 @@ import axios from 'axios'
                 hasError: true,
                 auth : '',                
                 awesome : true,
-                delete : {'id' : 2}
+       
     		}
     	},
         mounted() {

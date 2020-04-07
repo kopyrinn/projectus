@@ -8,7 +8,7 @@
      <meta name="csrf-token" content="{{ csrf_token() }}">
     <script type="">window.Laravel = {csrfToken: '{{ csrf_token() }}' }</script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/axios-test.js') }}" defer></script>
+
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,7 +43,7 @@
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
-
+                   
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->

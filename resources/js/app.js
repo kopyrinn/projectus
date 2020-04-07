@@ -17,7 +17,7 @@ window.Vue = require('vue');
 Vue.component('articles', require('./components/Articles.vue').default);
 Vue.component('app', require('./components/App.vue').default);
 
-axios.post('/api/axio', {name: 'NE KOLYA'}).then(respond => {
+axios.post('/api/axio', {name: 'master'}).then(respond => {
 	//alert(respond.data);
 	console.log(respond.data);
 	//document.getElementById('axios').innerHTML = respond.data;
@@ -28,25 +28,62 @@ axios.post('/api/axio', {name: 'NE KOLYA'}).then(respond => {
 import VueRouter from 'vue-router';
 
 
-console.log('app js worked')
-
 const app = new Vue({
     el: '#app',
     data : {
     	userID :  '',
     	newItem : {'name': '', 'user_id' : userID.value, 'status' : 0},
-    	hasError: true,
     	items : [],
     	affairs : [],
-    	authUser : 'баракуда',    	
+	   upd: 1,
+       counter : 0,
     },
     methods : {
-    	login() {
-    			var authID = document.getElementById('userID').value;	
-				this.userID = authID;
-				console.log(this.userID);	
-    	},
 
+        delItem(delID) {
+            var destr = delID.id;
+            console.log(destr)
+
+                axios.post('/api/delete/'+ delID.id).then( function(responce){ 
+
+                         
+                    }) 
+                 this.getItems();  
+        },
+        update(upda) {
+            var updID = upda.id;
+            var choose = this.upd;
+            // console.log(choose)
+            // console.log(updID)
+
+            var obnovl = {'id' : upda.id, 'choose' : choose}
+            console.log(obnovl)
+
+            if(this.upd==1){                 
+                 this.upd=0
+                 //alert(this.upd);
+                axios.post('/api/update', obnovl).then( function(responce){ 
+
+                         
+                    }) 
+                this.getItems(); 
+            } else {
+                 this.upd=1
+                 //alert(this.upd); 
+
+                axios.post('/api/update', obnovl).then( function(responce){ 
+
+                         
+                    }) 
+                this.getItems();                
+            }
+
+            //     axios.post('/api/update', obnovl).then( function(responce){ 
+
+                         
+            //         }) 
+            // this.getItems();  
+        },
 
     	getAuth : function getAuth() {
     		var _this = this;
@@ -59,35 +96,45 @@ const app = new Vue({
     	},
 
     	getItems : function getItems() {
-    		console.log('а как же эта');
+    		console.log('getItems отработал');
     		var _this = this;
     		//axios.post('api/get');
-    		axios.get('/api/get').then( function(responce){
-    				
+    		axios.get('/api/get').then( function(responce){    				
     					_this.items = responce.data;
     					//console.log(responce.data);				
-    				}) 
-    	},
+    				}); 
+
+            //
+
+    	}
+
+        ,
     	createItem : function createItem() {
     			var input = this.newItem;
-    			var _this = this;
-    			console.log(input);
-    			if (input['name'] == '' || input['user_id'] == '') {
-    				alert('заполни поле');
-    				this.hasError = false;
-    			} else {
-    				this.hasError = true;
-    				axios.post('/api/dobav', input ).then( function(responce){
-    					_this.newItem = {'name': '', 'user_id' : '', 'status' : ''};
-    					_this.getItems();
+            
+    			console.log(input); //проверка
+    				axios.post('/api/dobav', input).then( function(responce){ //then 9обработать promise метода post
+    					//newItem = {'name': '', 'user_id' : '', 'status' : ''};   
+                    			
     				}) 
-    			}
-    			this.getItems();
-            }
-    }, mounted() {
-            console.log('я врубил новый mounted ');
-            //this.getItems();
-            this.login();
+    		
+    		  this.getItems();
+           // this.newItem.name = '';
+           
+            },
+
+
+            login() {
+                var authID = document.getElementById('userID').value;   
+                this.userID = authID;
+                console.log(this.userID + " это айди юзера");   
+        },
+
+        }, mounted() {
+                console.log('app js подключен');
+                //this.getItems();
+                this.login();
+                this.getItems();
 
         },
 
@@ -100,3 +147,8 @@ const app = new Vue({
 	       //              // document.getElementById('axios').innerHTML = respond.data;
         //        		 });
 
+
+
+
+            // var formDel = document.getElementById('del').value;
+            //  this.del = formDel;

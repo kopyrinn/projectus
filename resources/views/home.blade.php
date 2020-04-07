@@ -1,10 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-
-
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -20,38 +16,70 @@
 
                     Вы авторизованы! Добро пожаловать {{Auth::user()->name}}
                     <input id="user" type="" hidden name="" value="{{Auth::user()->name}}">
-                    <input id="userID" type="" hidden name="" value="{{Auth::user()->id}}">        
+                    <input id="userID" ref="userID" type="" hidden name="" value="{{Auth::user()->id}}">        
             <div class="content">
                 <div id="app">
+                   
                     <div>
-                      <!--  <input type="" name="" required class="form-control col-12" name="name" placeholder="дело" v-model="newItem.name">
+                       <input type="" name="" required class="form-control col-12" name="name" placeholder="что за дело" v-model="newItem.name">
 
-                        <input type="" name="" required class="form-control col-3" name="user_id" placeholder="user_id" hidden v-model="newItem.user_id">
+                        <input type="" name="" required class="form-control col-3" name="user_id" hidden v-model="newItem.user_id">
                
 
-                        <input type="" name="" required class="form-control col-3" hidden name="status" value="1" v-model="newItem.status" placeholder="status">
-
-                        <button type="submit" class="btn btn-primary" @click.prevent="createItem()">Добавить дело</button>
-                        <p class="alert alert-danger" v-bind:class="{hidden: hasError }">
-                            Заполни все поля
-                        </p>       -->               
-                        <app>
+                        <input type="" name="" required class="form-control col-3" hidden name="status" v-model="newItem.status">
+                        <div class="text-right">
                             
+                        <button type="submit" class="btn btn-primary col-md-2" @click.prevent="createItem()">Добавить</button>
+                        </div>
 
-                        </app>
-                        
+                        <table class="table table-borderless" id="table">
+                            <thead>
+                                <tr>
+                                    <th>НОМЕР</th>
+                                    <th>МОИ ДЕЛА</th>
+                                    <th>СТАТУС ДЕЛА</th>
+                                
+                                </tr>
+                            </thead>                            
+                            <tr v-for="(item,index) in items" >  
+                                <template v-if="item.user_id==userID">             
+                                    <th>@{{index+1}}</th>
+                                    <th>@{{item.name}}</th>
+                                    <th v-if="item.status===0">невыполнено</th>
+                                    <th v-else="item.status===1">выполнено</th>
+                    
+                                    <button type="submit" class="btn btn-danger mr-3" @click.prevent="delItem(item)">удалить</button>
+
+                                    <button type="submit" class="btn btn-primary" @click.prevent="update(item)">выполнено</button>
+                                </template>  
+                            </tr>
+                           
+                        </table>
+                                                    
+   
+
 
                 
                 </div>
-                <div id="axios"></div>
+               
 
             </div>
-                   <!--
+                  
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+ <!--
                         <h2>Добавить дело НА PHP</h2>
                         <input name="name" placeholder="дело">
                         <input type="" name="status" hidden value="0">
                         <input type="" name="userID" hidden>
-                        <button>отправить</button>
+                        <button>отправить</button> это из обычного php
 
                         @foreach($affair as $aff)
         @if ( $aff->user->name  == Auth::user()->name)
@@ -82,12 +110,10 @@
         </div>
         @endif
 @endforeach -->
-                </div>
 
-
-
-            </div>
-        </div>
-    </div>
 </div>
+
+
 @endsection
+
+
