@@ -17,18 +17,18 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/home',"AffairController@index");
+// Route::get('/home',"AffairController@index");
  
 
-Route::post('/create','AffairController@create'); 
+// Route::post('/create','AffairController@create'); 
 
-Route::post('/update','AffairController@update'); 
+// Route::post('/update','AffairController@update'); 
 
-Route::post('/delete','AffairController@destroy'); 
+// Route::post('/delete','AffairController@destroy'); 
 
-Auth::routes();
+// Auth::routes();
 
 //

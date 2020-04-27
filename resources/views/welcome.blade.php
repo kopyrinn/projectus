@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Сайт коли</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <script type="">window.Laravel = {csrfToken: '{{ csrf_token() }}' }</script>
         <script src="{{ asset('js/app.js') }}" defer></script>
@@ -42,7 +42,7 @@
                     <input id="user" type="" hidden name="" value="">
                     <input id="userID" type="" hidden name="" value=""> 
             </div>
-               <a href="/home">перейти на домашнюю</a>
+              
         </div>
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
