@@ -17,7 +17,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Мой сайт</title>
-
+    <style type="text/css">
+        .red {
+            color : red;
+        }
+    </style>
 
 
     <!-- Fonts -->

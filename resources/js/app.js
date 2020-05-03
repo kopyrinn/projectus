@@ -1,4 +1,4 @@
-import axios from 'axios'
+//import axios from 'axios'
 
 require('./bootstrap');
 
@@ -35,8 +35,9 @@ const app = new Vue({
     	newItem : {'name': '', 'user_id' : userID.value, 'status' : 0},
     	items : [],
     	affairs : [],
-	   upd: 1,
-       counter : 0,
+	    upd: 1,
+        counter : 0,
+        edit : false,
     },
     methods : {
 
@@ -44,7 +45,7 @@ const app = new Vue({
             var destr = delID.id;
             console.log(destr)
 
-                axios.post('/api/delete/'+ delID.id).then( function(responce){ 
+                axios.post('/api/delete/'+ delID.id).then( function(responce){ //объект который к тебе вернется
 
                          
                     }) 
@@ -88,7 +89,7 @@ const app = new Vue({
     	getAuth : function getAuth() {
     		var _this = this;
 	    	axios.get('/api/au').then( function(responce){
-			
+			 
 				_this.authUser = responce.data;
 				console.log(responce.data);	
 
@@ -97,8 +98,10 @@ const app = new Vue({
 
     	getItems : function getItems() {
     		console.log('getItems отработал');
+            //this.newItem.name ="";
     		var _this = this;
     		//axios.post('api/get');
+            //
     		axios.get('/api/get').then( function(responce){    				
     					_this.items = responce.data;
     					//console.log(responce.data);				
@@ -111,20 +114,31 @@ const app = new Vue({
         ,
     	createItem : function createItem() {
     			var input = this.newItem;
-            
+                //if(this.newItem.name != ''){
+                var _this = this;
+
     			console.log(input); //проверка
     				axios.post('/api/dobav', input).then( function(responce){ //then 9обработать promise метода post
-    					//newItem = {'name': '', 'user_id' : '', 'status' : ''};   
+    					_this.newItem.name = '';
                     			
     				}) 
-    		
-    		  this.getItems();
-           // this.newItem.name = '';
-           
+                     this.getItems();
+                //}
+    		  //this.newItem.name = 'kek';
+    		 
+        
+                
             },
 
+        editItem() {
+            this.edit = true; //надо задать каждому элементу свой edit
+          
+        },
+        doneEdit() {
+            this.edit = false; //надо задать каждому элементу свой edit
+        },        
 
-            login() {
+        login() { //проверка авторизованного юзера
                 var authID = document.getElementById('userID').value;   
                 this.userID = authID;
                 console.log(this.userID + " это айди юзера");   

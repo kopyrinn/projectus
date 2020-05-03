@@ -52785,11 +52785,8 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-
-
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+//import axios from 'axios'
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); // window.VueRouter = require('vue-router').default;
@@ -52801,7 +52798,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 Vue.component('articles', __webpack_require__(/*! ./components/Articles.vue */ "./resources/js/components/Articles.vue")["default"]);
 Vue.component('app', __webpack_require__(/*! ./components/App.vue */ "./resources/js/components/App.vue")["default"]);
-axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/axio', {
+axios.post('/api/axio', {
   name: 'master'
 }).then(function (respond) {
   //alert(respond.data);
@@ -52821,13 +52818,15 @@ var app = new Vue({
     items: [],
     affairs: [],
     upd: 1,
-    counter: 0
+    counter: 0,
+    edit: false
   },
   methods: {
     delItem: function delItem(delID) {
       var destr = delID.id;
       console.log(destr);
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/delete/' + delID.id).then(function (responce) {});
+      axios.post('/api/delete/' + delID.id).then(function (responce) {//объект который к тебе вернется
+      });
       this.getItems();
     },
     update: function update(upda) {
@@ -52844,12 +52843,12 @@ var app = new Vue({
       if (this.upd == 1) {
         this.upd = 0; //alert(this.upd);
 
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/update', obnovl).then(function (responce) {});
+        axios.post('/api/update', obnovl).then(function (responce) {});
         this.getItems();
       } else {
         this.upd = 1; //alert(this.upd); 
 
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/update', obnovl).then(function (responce) {});
+        axios.post('/api/update', obnovl).then(function (responce) {});
         this.getItems();
       } //     axios.post('/api/update', obnovl).then( function(responce){ 
       //         }) 
@@ -52859,31 +52858,44 @@ var app = new Vue({
     getAuth: function getAuth() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/au').then(function (responce) {
+      axios.get('/api/au').then(function (responce) {
         _this.authUser = responce.data;
         console.log(responce.data);
       });
     },
     getItems: function getItems() {
-      console.log('getItems отработал');
+      console.log('getItems отработал'); //this.newItem.name ="";
 
       var _this = this; //axios.post('api/get');
+      //
 
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/get').then(function (responce) {
+      axios.get('/api/get').then(function (responce) {
         _this.items = responce.data; //console.log(responce.data);				
       }); //
     },
     createItem: function createItem() {
-      var input = this.newItem;
+      var input = this.newItem; //if(this.newItem.name != ''){
+
+      var _this = this;
+
       console.log(input); //проверка
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/dobav', input).then(function (responce) {//then 9обработать promise метода post
-        //newItem = {'name': '', 'user_id' : '', 'status' : ''};   
+      axios.post('/api/dobav', input).then(function (responce) {
+        //then 9обработать promise метода post
+        _this.newItem.name = '';
       });
-      this.getItems(); // this.newItem.name = '';
+      this.getItems(); //}
+      //this.newItem.name = 'kek';
+    },
+    editItem: function editItem() {
+      this.edit = true; //надо задать каждому элементу свой edit
+    },
+    doneEdit: function doneEdit() {
+      this.edit = false; //надо задать каждому элементу свой edit
     },
     login: function login() {
+      //проверка авторизованного юзера
       var authID = document.getElementById('userID').value;
       this.userID = authID;
       console.log(this.userID + " это айди юзера");
