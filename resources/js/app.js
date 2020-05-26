@@ -135,7 +135,7 @@ const app = new Vue({
           
         },
         doneEdit() {
-            this.edit = false; //надо задать каждому элементу свой edit
+            this.edit = false; 
         },        
 
         login() { //проверка авторизованного юзера
@@ -144,7 +144,9 @@ const app = new Vue({
                 console.log(this.userID + " это айди юзера");   
         },
 
-        }, mounted() {
+}, 
+
+mounted() {
                 console.log('app js подключен');
                 //this.getItems();
                 this.login();

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
@@ -23,6 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $carbon = Carbon::createFromFormat('Y-m-d','2020-06-22','9'); //дата проведения
+        $carbon_now = Carbon::now();
+
+
+        $date = $carbon->diffInDays($carbon_now); //осталось дней  
+
+        return view('home',[
+            'date' => $date,
+            'dateFinal' => $carbon,
+        ]);
     }
 }

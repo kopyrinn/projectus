@@ -52892,7 +52892,7 @@ var app = new Vue({
       this.edit = true; //надо задать каждому элементу свой edit
     },
     doneEdit: function doneEdit() {
-      this.edit = false; //надо задать каждому элементу свой edit
+      this.edit = false;
     },
     login: function login() {
       //проверка авторизованного юзера
